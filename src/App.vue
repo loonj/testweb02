@@ -16,7 +16,12 @@
 }
 
 #nav {
-  padding: 30px;
+  position: fixed;
+  bottom:10px;
+  margin:0 auto;
+  text-align: center;
+  width:100%;
+  padding: 10px 30px;
 }
 
 #nav a {

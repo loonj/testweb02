@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://unpkg.com/vue@next"></script>
+<style>
+    .class1{
+      background: #444;
+      color: #eee;
+    }
+    </style>
+</head>
+<body>
+<div id="hello-vue" class="demo">
+  {{ message }} <br>
+  {{msg}}<br>
+  <p>使用双大括号的文本插值: {{ rawHtml }}</p>
+  <p>使用 v-html 指令: <span v-html="rawHtml"></span></p>  <!--这里会多套一层span-->
+  <p>使用 v-html 指令: <span style="color: red">这里会显示红色！</span></p>
+  <input type="checkbox" v-model="checked">   <!--v-model 双向数据绑定-->
+  <br>
+  <div v-bind:class="{'class1':checked}">{{msg}}</div>
+  <p v-if="checked">{{message}}</p>
+  <ol>
+      <li v-for="(item, index) in sites" :key="index">{{item.text}}</li>
+  </ol>
+
+  <button v-on:click="reverseStr">反转字符串</button>
+
+</div>
+
+<script>
+const HelloVueApp = {
+  data() {
+    return {
+      message: 'Hello Vue!!',
+      msg: '生活的本质',
+      count:5,
+      rawHtml: '<span style="color: red">这里会显示红色！</span>',
+      checked:false,
+      sites: [
+        { text: 'Google' },
+        { text: 'Runoob' },
+        { text: 'Taobao' }
+      ]
+    };
+  },
+  methods:{
+        increment(){
+            this.count++;
+        },
+        reverseStr(){
+            this.message=this.message.split('').reverse().join('');
+        }
+    }
+}
+
+const vm=Vue.createApp(HelloVueApp).mount('#hello-vue');
+console.log(vm.message);
+console.log(vm.$data.message);
+vm.message='生活就像一杯酒';
+console.log(vm.$data.message);
+vm.increment();
+console.log(vm.count);
+</script>
+</body>
+</html>
